@@ -62,7 +62,7 @@ func (provider *Provider) IsAuthorized(request *http.Request) (*string, error) {
 	var userParams map[string]string
 
 	// start with the body/query params
-	userParams, err = parseBody(request)
+	userParams, err = ParseBody(request)
 	if err != nil {
 		return nil, err
 	}

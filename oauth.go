@@ -760,7 +760,7 @@ func canonicalizeUrl(u *url.URL) string {
 	return buf.String()
 }
 
-func parseBody(request *http.Request) (map[string]string, error) {
+func ParseBody(request *http.Request) (map[string]string, error) {
 	userParams := map[string]string{}
 
 	// TODO(mrjones): factor parameter extraction into a separate method
@@ -872,7 +872,7 @@ func (rt *RoundTripper) RoundTrip(userRequest *http.Request) (*http.Response, er
 	authParams := allParams.Clone()
 
 	// TODO(mrjones): put these directly into the paramPairs below?
-	userParams, err := parseBody(serverRequest)
+	userParams, err := ParseBody(serverRequest)
 	if err != nil {
 		return nil, err
 	}
