@@ -764,8 +764,8 @@ func ParseBody(request *http.Request) (map[string]string, error) {
 	userParams := map[string]string{}
 
 	// TODO(mrjones): factor parameter extraction into a separate method
-	if request.Header.Get("Content-Type") !=
-		"application/x-www-form-urlencoded" {
+	contentType := request.Header.Get("Content-Type")
+	if !strings.HasPrefix(contentType, "application/x-www-form-urlencoded") {
 		// Most of the time we get parameters from the query string:
 		for k, vs := range request.URL.Query() {
 			if len(vs) != 1 {
